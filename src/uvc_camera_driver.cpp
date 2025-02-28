@@ -156,8 +156,8 @@ UVCCameraDriver::UVCCameraDriver(ros::NodeHandle &nh, ros::NodeHandle &nh_privat
   device_num_ = nh_private_.param<int>("device_num", 1);
   uvc_flip_ = nh_private_.param<bool>("uvc_flip", false);
   flip_color_ = nh_private_.param<bool>("flip_color", false);
-  config_.vendor_id = nh_private_.param<int>("uvc_vendor_id", 0x0);
-  config_.product_id = nh_private_.param<int>("uvc_product_id", 0x0);
+  config_.vendor_id = std::stoi(nh_private_.param<std::string>("uvc_vendor_id", "0x0"), 0, 16);
+  config_.product_id = std::stoi(nh_private_.param<std::string>("uvc_product_id", "0x0"), 0 ,16);
   config_.width = nh_private_.param<int>("color_width", 640);
   config_.height = nh_private_.param<int>("color_height", 480);
   config_.fps = nh_private_.param<int>("color_fps", 30);
